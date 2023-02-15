@@ -21,6 +21,7 @@ const examplePizza = {
 // start with a blank pizza
 let currentPizza = {}
 
+
 // 1. Function for adding 2 toppings to the pizza
 
 const addToppings = (top1, top2) => {
@@ -41,7 +42,7 @@ const addToppings = (top1, top2) => {
   
 
 // 3. input toppings and pizza size from inputs on pizza-maker.html 
-//    when "Make Pizza" button is pressed (also redirects to "pizza-completer.html")
+//    when "Make Pizza" button is pressed (also transforms HTML into "Pizza Completer")
 
   const submitBtn = document.getElementById("submit-pizza")
   const topping1Input = document.getElementById("topping-one")
@@ -52,7 +53,6 @@ const addToppings = (top1, top2) => {
   let toppingTwo 
   let pizzaSize 
   
-
   submitBtn.addEventListener("click", function(){
    
   toppingOne = topping1Input.value
@@ -62,6 +62,8 @@ const addToppings = (top1, top2) => {
   addToppings(toppingOne,toppingTwo)
   addSize(pizzaSize)
 
+  console.log(currentPizza)
+
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // This completely changes the HTML structure of the form to be 3 buttons
   // An EXAMPLE of this html layout is apart of this folder saved as EXAMPLE.html for reference
@@ -69,7 +71,9 @@ const addToppings = (top1, top2) => {
   const rewriteHTML = document.querySelector('form')
   rewriteHTML.innerHTML = `
 
-  <a href="#" id="bake-pizza">
+  <div id="pizza-status">Please make sure the customer has paid for their pizza before it is made or delivered</div>
+
+  <a href="#" id="pay-4-pizza">
   <span></span>
   <span></span>
   <span></span>
@@ -77,7 +81,7 @@ const addToppings = (top1, top2) => {
   Pay 4 Pizza
 </a>
 
-<a href="#" id="pay-4-pizza">
+<a href="#" id="bake-pizza">
   <span></span>
   <span></span>
   <span></span>
@@ -93,23 +97,51 @@ const addToppings = (top1, top2) => {
   Deliver Pizza
 </a>
 
-<div id="pizza-status"></div>
-
   `
+
+
   })
+
+allLinks = document.querySelectorAll('a')
+
+allLinks.addEventListener("click", addListenersToNewButtons())
+
+function addListenersToNewButtons(){
+//variables for new elements in HTML
+const payBtn = document.getElementById("pay-4-pizza")
+const bakeBtn = document.getElementById("bake-pizza")
+const deliverBtn = document.getElementById("deliver-pizza")
+
+// event listeners for new elements in html
+payBtn.addEventListener("click", pay4Pizza())
+bakeBtn.addEventListener("click", pay4Pizza())
+deliverBtn.addEventListener("click", pay4Pizza())
+
+}
+
+// 4. Function to mark the pizza as being paid
   
+const pay4Pizza = () => {
+  currentPizza.paid = true;
+  const statusMsg = document.getElementById("pizza-status")
+  statusMsg.textContent = "The customer has paid for their pizza. Please prepare it for baking!"
+  console.log("The customer has paid for their pizza. Please prepare it for baking!")
   console.log(currentPizza)
+}
 
+
+// 5. Function that bakes the pizza
   
+const bakePizza = () => {
+  if(currentPizza.paid){
+  currentPizza.baked = true;
+  const statusMsg = document.getElementById("pizza-status")
+  statusMsg.textContent = "The customer's pizza has been made and is ready for delivery!"
+  console.log("The customer's pizza has been made and is ready for delivery!")
+  console.log(currentPizza)
+  }
+}
 
-
-// 4. Function that bakes the pizza
-  
-const bakePizza = () => currentPizza.baked = true;
-
-// 5. Function to mark the pizza as being paid
-  
-const pay4Pizza = () => currentPizza.paid = true;
 
 // 6. Function that logs a "Your {pizza details} is being delivered".
 // If pizza is not paid for yet, display "Please pay us first"
@@ -117,15 +149,14 @@ const pay4Pizza = () => currentPizza.paid = true;
 const deliverPizza = () => {
   if(currentPizza.paid){
     currentPizza.outForDelivery = true;
-    console.log(`Your ${currentPizza.size} inch pizza with ${currentPizza.topping1} and ${currentPizza.topping2} is being delivered!`)
-  }
+    const statusMsg = document.getElementById("pizza-status")
+    statusMsg.textContent = `The customer's ${currentPizza.size} inch pizza with ${currentPizza.topping1} and ${currentPizza.topping2} is out for delivery!`
+    console.log(`The customer's ${currentPizza.size} inch pizza with ${currentPizza.topping1} and ${currentPizza.topping2} is out for delivery!`)
+    console.log(currentPizza)}
   
-  else{
-    console.log('Please pay for your pizza to have it made and delivered')
-  } 
 }
 
-deliverPizza()
+
 
 
   

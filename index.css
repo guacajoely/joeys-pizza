@@ -1,0 +1,28 @@
+
+
+body{
+  background-color: #0067AC; /* Used if the image is unavailable */
+}
+
+.image-container {
+  background-image: url("images/background-image.gif"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 800px; /* You must set a specified height */
+  max-width: 1600px;
+  background-position: left; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+  button {
+    background: transparent;
+    border: none !important;
+    font-size:0;
+    position: absolute;
+    top: 640px; 
+    left: 455px;
+    width:270px;
+    height: 90px;
+}
+
+
+

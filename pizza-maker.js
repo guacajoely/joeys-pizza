@@ -18,27 +18,19 @@ const examplePizza = {
     outForDelivery: false
   }
   
-  // start with a blank pizza
-  let currentPizza = {}
-  
-  //   Goals of the pizza project:
-  //   ---------------------------
-  //   1. Function for adding 2 toppings to the pizza
-  
-  let toppingOne = 'pepperoni'
-  let toppingTwo =  'sausage'
-  
-  const addToppings = (top1, top2) => {
+// start with a blank pizza
+let currentPizza = {}
+
+// 1. Function for adding 2 toppings to the pizza
+
+const addToppings = (top1, top2) => {
     currentPizza.topping1 = top1;
     currentPizza.topping2 = top2;
   }
   
-  addToppings(toppingOne,toppingTwo)
-      
-  //     2. Function that adds `size` property to pizza
-  //    (ALSO ADDS baked, paid, and outForDelivery keys as false)
-  
-  let pizzaSize = 12
+
+// 2. Function that adds `size` property to pizza
+// (ALSO ADDS baked, paid, and outForDelivery keys as false)
   
   const addSize = (size) => {
     currentPizza.size = size;
@@ -47,37 +39,94 @@ const examplePizza = {
     currentPizza.outForDelivery = false;
   }
   
+
+// 3. input toppings and pizza size from inputs on pizza-maker.html 
+//    when "Make Pizza" button is pressed (also redirects to "pizza-completer.html")
+
+  const submitBtn = document.getElementById("submit-pizza")
+  const topping1Input = document.getElementById("topping-one")
+  const topping2Input = document.getElementById("topping-two")
+  const sizeInput = document.getElementById("size")
+
+  let toppingOne
+  let toppingTwo 
+  let pizzaSize 
+  
+
+  submitBtn.addEventListener("click", function(){
+   
+  toppingOne = topping1Input.value
+  toppingTwo = topping2Input.value
+  pizzaSize = parseFloat(sizeInput.value)
+
+  addToppings(toppingOne,toppingTwo)
   addSize(pizzaSize)
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // This completely changes the HTML structure of the form to be 3 buttons
+  // An EXAMPLE of this html layout is apart of this folder saved as EXAMPLE.html for reference
+
+  const rewriteHTML = document.querySelector('form')
+  rewriteHTML.innerHTML = `
+
+  <a href="#" id="bake-pizza">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  Pay 4 Pizza
+</a>
+
+<a href="#" id="pay-4-pizza">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  Bake Pizza
+</a>
+
+<a href="#" id="deliver-pizza">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  Deliver Pizza
+</a>
+
+<div id="pizza-status"></div>
+
+  `
+  })
   
-  //     3. Function that bakes the pizza
+  console.log(currentPizza)
+
   
-  const bakePizza = () => currentPizza.baked = true;
+
+
+// 4. Function that bakes the pizza
   
-  //     4. Function to mark the pizza as being paid
+const bakePizza = () => currentPizza.baked = true;
+
+// 5. Function to mark the pizza as being paid
   
-  const pay4Pizza = () => currentPizza.paid = true;
+const pay4Pizza = () => currentPizza.paid = true;
+
+// 6. Function that logs a "Your {pizza details} is being delivered".
+// If pizza is not paid for yet, display "Please pay us first"
   
-  //     5. Function that logs a "Your {pizza details} is being delivered".
-  //           If pizza is not paid for yet, display "Please pay us first"
-  
-  const deliverPizza = () => {
-    if(currentPizza.paid){
-      currentPizza.outForDelivery = true;
-      console.log(`Your ${currentPizza.size} inch pizza with ${currentPizza.topping1} and ${currentPizza.topping2} is being delivered!`)
-    }
-    
-    else{
-      console.log('Please pay for your pizza to have it delivered')
-    } 
+const deliverPizza = () => {
+  if(currentPizza.paid){
+    currentPizza.outForDelivery = true;
+    console.log(`Your ${currentPizza.size} inch pizza with ${currentPizza.topping1} and ${currentPizza.topping2} is being delivered!`)
   }
   
-  deliverPizza()
-  
-  
-  //     6. Each function copies the input object and returns
-  //           modified copy
-  
-    
-  console.log(currentPizza)
+  else{
+    console.log('Please pay for your pizza to have it made and delivered')
+  } 
+}
+
+deliverPizza()
+
+
   
   

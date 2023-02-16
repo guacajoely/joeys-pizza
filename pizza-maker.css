@@ -176,9 +176,12 @@ body {
 #pizza-status {
   color: white;
   font-weight: bold;
+  font-size: 18px;
 }
 
 #pizza-build {
   color: white;
-  margin-bottom:10px;
+  margin-bottom:20px;
+  font-size: 18px;
+
 }

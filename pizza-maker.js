@@ -73,7 +73,7 @@ const addToppings = (top1, top2) => {
   rewriteHTML.innerHTML = `
 
   <div id="pizza-build">The customer has ordered a <strong>${currentPizza.size}</strong> inch pizza with <strong>${currentPizza.topping1}</strong> and <strong>${currentPizza.topping2}</strong></div>
-  <div id="pizza-status">Please make sure the customer has paid for their pizza before it is made or delivered</div>
+  <div id="pizza-status">Please make sure the customer has paid for their pizza before it is made or delivered!</div>
 
   <a onclick="pay4Pizza()" href="#" id="pay-4-pizza">
   <span></span>
@@ -99,7 +99,7 @@ const addToppings = (top1, top2) => {
   Deliver Pizza
 </a>
 
-<a href="pizza-maker.html" id="make-new-pizza">
+<a href="index.html" id="make-new-pizza">
   <span></span>
   <span></span>
   <span></span>
@@ -126,7 +126,6 @@ const pay4Pizza = () => {
   currentPizza.paid = true;
   const statusMsg = document.getElementById("pizza-status")
   statusMsg.textContent = "The customer has paid for their pizza. Please prepare it for baking!"
-  console.log("The customer has paid for their pizza. Please prepare it for baking!")
   console.log(currentPizza)
 }
 
@@ -146,8 +145,7 @@ const bakePizza = () => {
   if(currentPizza.paid){
   currentPizza.baked = true;
   const statusMsg = document.getElementById("pizza-status")
-  statusMsg.textContent = "The customer's pizza has been made and is ready for delivery!"
-  console.log("The customer's pizza has been made and is ready for delivery!")
+  statusMsg.textContent = "The customer's pizza his done and ready for delivery!"
   console.log(currentPizza)
   }
 }
@@ -161,7 +159,6 @@ const deliverPizza = () => {
     currentPizza.outForDelivery = true;
     const statusMsg = document.getElementById("pizza-status")
     statusMsg.textContent = `The customer's pizza is out for delivery!`
-    console.log(`The customer's pizza is out for delivery!`)
     console.log(currentPizza)}
   
 }

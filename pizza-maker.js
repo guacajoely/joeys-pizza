@@ -155,6 +155,12 @@ const bakePizza = () => {
 // If pizza is not paid for yet, display "Please pay us first"
   
 const deliverPizza = () => {
+
+//can't deliver pizza if not baked
+  if(currentPizza.baked === false){
+    return
+  }
+  
   if(currentPizza.paid){
     currentPizza.outForDelivery = true;
     const statusMsg = document.getElementById("pizza-status")

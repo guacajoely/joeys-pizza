@@ -1,7 +1,7 @@
 * {
-  --neongreen: #ff1e16;
-  --darkgreen: #d4160f;
-  --green: #8f0f0a;
+  --neonred: #ff1e16;
+  --darkred: #8f0f0a;
+  --red: #d4160f;
 }
 
 
@@ -12,7 +12,7 @@ body {
   margin:0;
   padding:0;
   font-family: Segoe UI, sans-serif;
-  background: linear-gradient(var(--darkgreen), black);
+  background: linear-gradient(var(--red), black);
 }
 
 .form-container {
@@ -65,7 +65,7 @@ body {
 .form-container .input-box input:valid ~ label {
   top: -20px;
   left: 0;
-  color: var(--neongreen);
+  color: var(--neonred);
   font-size: 12px;
 }
 
@@ -73,7 +73,7 @@ body {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
-  color: var(--neongreen);
+  color: var(--neonred);
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
@@ -84,13 +84,13 @@ body {
 }
 
 .form-container a:hover {
-  background: var(--neongreen);
+  background: var(--neonred);
   color: #fff;
   border-radius: 5px;
-  box-shadow: 0 0 5px var(--neongreen),
-              0 0 25px var(--neongreen),
-              0 0 50px var(--neongreen),
-              0 0 100px var(--neongreen);
+  box-shadow: 0 0 5px var(--neonred),
+              0 0 25px var(--neonred),
+              0 0 50px var(--neonred),
+              0 0 100px var(--neonred);
 }
 
 .form-container a span {
@@ -103,7 +103,7 @@ body {
   left: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--neongreen));
+  background: linear-gradient(90deg, transparent, var(--neonred));
   animation: btn-anim1 2s linear infinite;
 }
 
@@ -121,7 +121,7 @@ body {
   right: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, var(--neongreen));
+  background: linear-gradient(180deg, transparent, var(--neonred));
   animation: btn-anim2 2s linear infinite;
   animation-delay: .5s
 }
@@ -140,7 +140,7 @@ body {
   right: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(270deg, transparent, var(--neongreen));
+  background: linear-gradient(270deg, transparent, var(--neonred));
   animation: btn-anim3 2s linear infinite;
   animation-delay: 1s
 }
@@ -159,7 +159,7 @@ body {
   left: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(360deg, transparent, var(--neongreen));
+  background: linear-gradient(360deg, transparent, var(--neonred));
   animation: btn-anim4 2s linear infinite;
   animation-delay: 1.5s
 }

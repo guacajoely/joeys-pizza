@@ -3,25 +3,21 @@
 //   that allows employees to build customer pizzas with 2 toppings, at the
 //   right size, get it paid for, bake it, and then output a message that
 //   it is being delivered.
-
 //   The delivery message should only happen if the pizza has been paid for.
 
-
 //COMPLETED PIZZA OBJECT PROTOTYPE
-
 
 const examplePizza = {
     topping1: 'pepperoni',
     topping2: 'sausage',
     size: 16,
-    baked: false,
     paid: false,
+    baked: false,
     outForDelivery: false
   }
   
 // start with a blank pizza
 let currentPizza = {}
-
 
 // 1. Function for adding 2 toppings to the pizza
 
@@ -30,9 +26,8 @@ const addToppings = (top1, top2) => {
     currentPizza.topping2 = top2;
   }
   
-
 // 2. Function that adds `size` property to pizza
-// (ALSO ADDS baked, paid, and outForDelivery keys as false)
+// (ALSO ADDS paid, baked, and outForDelivery keys as false)
   
   const addSize = (size) => {
     currentPizza.size = size;
@@ -42,8 +37,8 @@ const addToppings = (top1, top2) => {
   }
   
 
-// 3. input toppings and pizza size from inputs on pizza-maker.html 
-//    when "Make Pizza" button is pressed (also transforms HTML into "Pizza Completer")
+// 3. grab toppings and size from inputs on pizza-builder.html 
+//    when "Make Pizza" button is clicked (also transforms HTML into "Pizza Completer")
 
   const submitBtn = document.getElementById("submit-pizza")
   const topping1Input = document.getElementById("topping-one")
@@ -66,7 +61,7 @@ const addToppings = (top1, top2) => {
   console.log(currentPizza)
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // This completely changes the HTML structure of the form to be 3 buttons
+  // This completely replaces the HTML in the form with 4 "buttons" (really just links surrounded by spans)
   // An EXAMPLE of this html layout is apart of this folder saved as EXAMPLE.html for reference
 
   const rewriteHTML = document.querySelector('form')
@@ -114,12 +109,13 @@ const addToppings = (top1, top2) => {
 })
 
 
-// 4. Function to mark the pizza as being paid
+// 4. Function that marks the pizza as being paid for
+// ran onClick by pay-4-pizza button
   
 const pay4Pizza = () => {
 
-//disable clicking previous buttons 
-  if(currentPizza.baked || currentPizza.outForDelivery){
+//make sure pizza is not already paid for, baked, OR out for delivery
+  if(currentPizza.paid || currentPizza.baked || currentPizza.outForDelivery){
     return
   }
 
@@ -130,38 +126,30 @@ const pay4Pizza = () => {
 }
 
 
-
 // 5. Function that bakes the pizza
+// ran onClick by bake-pizza button
 
-
-  
 const bakePizza = () => {
 
-//disable clicking previous buttons 
-  if(currentPizza.outForDelivery){
-    return
-  }
-
-  if(currentPizza.paid){
+//make sure pizza is paid for AND NOT already baked AND NOT out for delivery yet
+  if(currentPizza.paid && !currentPizza.baked && !currentPizza.outForDelivery ){
+    
   currentPizza.baked = true;
   const statusMsg = document.getElementById("pizza-status")
-  statusMsg.textContent = "The customer's pizza his done and ready for delivery!"
+  statusMsg.textContent = "The customer's pizza is done and ready for delivery!"
   console.log(currentPizza)
   }
 }
 
 
-// 6. Function that logs a "Your {pizza details} is being delivered".
-// If pizza is not paid for yet, display "Please pay us first"
+// 6. Function that delivers the pizza
+// ran onClick by deliver-pizza button
   
 const deliverPizza = () => {
 
-//can't deliver pizza if not baked
-  if(currentPizza.baked === false){
-    return
-  }
-  
-  if(currentPizza.paid){
+//make sure pizza is paid for AND baked AND NOT out for delivery already
+  if(currentPizza.paid && currentPizza.baked && !currentPizza.outForDelivery){
+
     currentPizza.outForDelivery = true;
     const statusMsg = document.getElementById("pizza-status")
     statusMsg.textContent = `The customer's pizza is out for delivery!`

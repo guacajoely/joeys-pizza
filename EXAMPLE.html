@@ -14,35 +14,36 @@
     <div class="form-container">
   
         <h1>Pizza Completer</h1>
-
-        <div id="pizza-status"></div>
         
         <form>
         
-          <a href="#" id="pay-4-pizza">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Pay 4 Pizza
-          </a>
-
-          <a href="#" id="bake-pizza">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Bake Pizza
-          </a>
-
-          <a href="#" id="deliver-pizza">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Deliver Pizza
-          </a>
-
+          <div id="pizza-build">The customer has ordered a <strong>${currentPizza.size}</strong> inch pizza with <strong>${currentPizza.topping1}</strong> and <strong>${currentPizza.topping2}</strong></div>
+          <div id="pizza-status">Please make sure the customer has paid for their pizza before it is made or delivered</div>
+        
+          <a onclick="pay4Pizza()" href="#" id="pay-4-pizza">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Pay 4 Pizza
+        </a>
+        
+        <a onclick="bakePizza()" href="#" id="bake-pizza">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Bake Pizza
+        </a>
+        
+        <a onclick="deliverPizza()" href="#" id="deliver-pizza">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Deliver Pizza
+        </a>
+        
 
       
           

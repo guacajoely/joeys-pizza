@@ -9,6 +9,7 @@
 
 //COMPLETED PIZZA OBJECT PROTOTYPE
 
+
 const examplePizza = {
     topping1: 'pepperoni',
     topping2: 'sausage',
@@ -71,9 +72,10 @@ const addToppings = (top1, top2) => {
   const rewriteHTML = document.querySelector('form')
   rewriteHTML.innerHTML = `
 
+  <div id="pizza-build">The customer has ordered a <strong>${currentPizza.size}</strong> inch pizza with <strong>${currentPizza.topping1}</strong> and <strong>${currentPizza.topping2}</strong></div>
   <div id="pizza-status">Please make sure the customer has paid for their pizza before it is made or delivered</div>
 
-  <a href="#" id="pay-4-pizza">
+  <a onclick="pay4Pizza()" href="#" id="pay-4-pizza">
   <span></span>
   <span></span>
   <span></span>
@@ -81,7 +83,7 @@ const addToppings = (top1, top2) => {
   Pay 4 Pizza
 </a>
 
-<a href="#" id="bake-pizza">
+<a onclick="bakePizza()" href="#" id="bake-pizza">
   <span></span>
   <span></span>
   <span></span>
@@ -89,7 +91,7 @@ const addToppings = (top1, top2) => {
   Bake Pizza
 </a>
 
-<a href="#" id="deliver-pizza">
+<a onclick="deliverPizza()" href="#" id="deliver-pizza">
   <span></span>
   <span></span>
   <span></span>
@@ -97,31 +99,30 @@ const addToppings = (top1, top2) => {
   Deliver Pizza
 </a>
 
+<a href="pizza-maker.html" id="make-new-pizza">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  Make New Pizza
+</a>
+
+
   `
 
 
-  })
+})
 
-allLinks = document.querySelectorAll('a')
-
-allLinks.addEventListener("click", addListenersToNewButtons())
-
-function addListenersToNewButtons(){
-//variables for new elements in HTML
-const payBtn = document.getElementById("pay-4-pizza")
-const bakeBtn = document.getElementById("bake-pizza")
-const deliverBtn = document.getElementById("deliver-pizza")
-
-// event listeners for new elements in html
-payBtn.addEventListener("click", pay4Pizza())
-bakeBtn.addEventListener("click", pay4Pizza())
-deliverBtn.addEventListener("click", pay4Pizza())
-
-}
 
 // 4. Function to mark the pizza as being paid
   
 const pay4Pizza = () => {
+
+//disable clicking previous buttons 
+  if(currentPizza.baked || currentPizza.outForDelivery){
+    return
+  }
+
   currentPizza.paid = true;
   const statusMsg = document.getElementById("pizza-status")
   statusMsg.textContent = "The customer has paid for their pizza. Please prepare it for baking!"
@@ -130,9 +131,18 @@ const pay4Pizza = () => {
 }
 
 
+
 // 5. Function that bakes the pizza
+
+
   
 const bakePizza = () => {
+
+//disable clicking previous buttons 
+  if(currentPizza.outForDelivery){
+    return
+  }
+
   if(currentPizza.paid){
   currentPizza.baked = true;
   const statusMsg = document.getElementById("pizza-status")
@@ -150,8 +160,8 @@ const deliverPizza = () => {
   if(currentPizza.paid){
     currentPizza.outForDelivery = true;
     const statusMsg = document.getElementById("pizza-status")
-    statusMsg.textContent = `The customer's ${currentPizza.size} inch pizza with ${currentPizza.topping1} and ${currentPizza.topping2} is out for delivery!`
-    console.log(`The customer's ${currentPizza.size} inch pizza with ${currentPizza.topping1} and ${currentPizza.topping2} is out for delivery!`)
+    statusMsg.textContent = `The customer's pizza is out for delivery!`
+    console.log(`The customer's pizza is out for delivery!`)
     console.log(currentPizza)}
   
 }
